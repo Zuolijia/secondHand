@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8"/>
+    <script src="../js/angular/angular.min.js"></script>
+    <script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
+    <script src="../js/main.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/style.css"/>
+    <title>跳蚤市场-商品列表-数码电器</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+
+<body>
+<div class="top_bar" ng-controller="GetCityController">
+    所在城市：<span id="mycity"></span>[<a href="">切换城市</a>]
+    <div class="personDetail">
+        <span id="signupAndLogin">
+        <a href="login.html">登录</a>&nbsp;
+        <a href="signup.html">注册</a>
+        </span>
+        <span id="myDetail" style="display: none">
+            <a href="center.html" title="个人中心" target="_blank"><span>{{$root.name}}</span></a>&nbsp;
+            <a href="javascript:void(0)" ng-click="exit()">退出</a>
+        </span>
+    </div>
+</div>
+
+<div class="tableContainer" style="background-color:rgb(152,203,0);width:100%;max-height:10px;">
+    <div class="tableRow">
+        <div id="logo"><a href="../main.html"><img src="../icon/main_logo.png" width="200" height="80" alt="Flea Market"></a></div>
+        <div id="search">
+            <input type="text" name="search_content" placeholder="输入关键字或类别搜索">
+            <input id="search_button" type="button" value="搜索">
+        </div>
+        <div id="post">
+            <input id="post_button" type="button" value="我要发帖" onclick="window.open('product_addition.html')"></button>
+        </div>
+    </div>
+</div>
+
+<div class="whole" ng-controller="listContentCtrl">
+    <br>
+
+    <div id="guide"><a href=../main.html>跳蚤市场 >></a> 数码电器</div>
+
+    <div class="centerContainer">
+        <div class="tableRow">
+            <div id="list_title">
+                <div class="contentContainer" style="width:800px;">
+                    <!--第一行：分类-->
+                    <div class="tableRow">
+                        <div id="type">
+                            <input type="button" style="width:80px;" value="分类："/></input>
+                            <input type="button" value="全部" size="5;"/></input>
+                            <input type="button" value="收音机" size="5;"/></input>
+                            <input type="button" value="洗衣机" size="5;"/></input>
+                            <input type="button" value="手机" size="5;"/></input>
+                            <input type="button" value="相机" size="7;"/></input>
+                            <input type="button" value="台灯" size="5;"/></input>
+                            <input type="button" value="笔记本" size="5;"/></input>
+                        </div>
+                    </div>
+
+                    <!--第二行：新旧程度-->
+                    <div class="tableRow">
+                        <div id="newold">
+                            <input type="button" style="width:80px;" value="新旧程度："/></input>
+                            <input type="button" value="全部" size="5;"/></input>
+                            <input type="button" value="全新" size="5;"/></input>
+                            <input type="button" value="95成新" size="5;"/></input>
+                            <input type="button" value="9成新" size="5;"/></input>
+                            <input type="button" value="8成新" size="7;"/></input>
+                            <input type="button" value="7成新及以下" size="8;"/></input>
+                        </div>
+                    </div>
+
+                    <!--第三行：价格区间-->
+                    <div class="tableRow">
+                        <div id="price">
+                            <input type="button" style="width:80px;" value="价格区间："/></input>
+                            <input type="button" value="全部" size="5;"/></input>
+                            <input type="button" value="1000以上" size="5;"/></input>
+                            <input type="button" value="500-1000" size="5;"/></input>
+                            <input type="button" value="300-500" size="5;"/></input>
+                            <input type="button" value="100-300" size="5;"/></input>
+                            <input type="button" value="100元以下" size="5;"/></input>
+                        </div>
+                    </div>
+
+                    <!--第四行：区域-->
+                    <div class="tableRow">
+                        <div id="area">
+                            <input type="button" style="width:80px;" value="区域："/></input>
+                            <input type="button" value="全部" size="5;"/></input>
+                            <input type="button" value="中珠" size="5;"/></input>
+                            <input type="button" value="南校" size="5;"/></input>
+                            <input type="button" value="大学城" size="5;"/></input>
+                            <input type="button" value="北校" size="5;"/></input>
+                            <input type="button" value="北师珠" size="5;"/></input>
+                            <input type="button" value="UIC" size="5;"/></input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tableRow" id="order_way">
+            <input type="button" value="默认排序"/></input>
+            <input type="button" value="最新发布" size="5;"/></input>
+            <input type="button" value="价格升序" size="5;"/></input>
+            <input type="button" value="价格降序" size="5;"/></input>
+        </div>
+    </div>
+    <div style="margin:10px 100px 10px 100px;">
+        <div class="listContainer">
+            <div class="tableRow">
+                <div class="thing"><img src="../img/电器1.jpg" width="100" height="100" alt="book"/></div>
+                <div style="display: table-cell;vertical-align: middle;padding-left: 20px;">
+                    <div class="thingname">苹果4／4S上门换屏原装屏</div>
+                    <div class="thingname">坐标：广州大学城</div>
+                    <div class="thingname">发布时间：2015-10-3</div>
+                </div>
+                <div class="thingprice">250元</div>
+            </div>
+        </div>
+
+        <div class="listContainer">
+            <div class="tableRow">
+                <div class="thing"><img src="../img/电器2.jpg" width="100" height="100" alt="book"/></div>
+                <div style="display: table-cell;vertical-align: middle;padding-left: 20px;">
+                    <div class="thingname">九九新128g国行6s玫瑰金</div>
+                    <div class="thingname">坐标：中大珠海校区</div>
+                    <div class="thingname">发布时间：2015-9-23</div>
+                </div>
+                <div class="thingprice">4500元</div>
+            </div>
+        </div>
+
+        <div class="listContainer">
+            <div class="tableRow">
+                <div class="thing"><img src="../img/电器3.jpg" width="100" height="100" alt="book"/></div>
+                <div style="display: table-cell;vertical-align: middle;padding-left: 20px;">
+                    <div class="thingname">2G电子盘，固态盘</div>
+                    <div class="thingname">坐标：中大南校区</div>
+                    <div class="thingname">发布时间：2015-9-23</div>
+                </div>
+                <div class="thingprice">50元</div>
+            </div>
+        </div>
+
+        <div class="listContainer">
+            <div class="tableRow">
+                <div class="thing"><img src="../img/电器4.jpg" width="100" height="100" alt="book"/></div>
+                <div style="display: table-cell;vertical-align: middle;padding-left: 20px;">
+                    <div class="thingname">60V20A大功率电动车</div>
+                    <div class="thingname">坐标：广州大学城</div>
+                    <div class="thingname">发布时间：2015-9-23</div>
+                </div>
+                <div class="thingprice">750元</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pageFoot">
+        <a href="javascript:void(0)" ng-click="firstPage()" ng-class="{true:'pageFootA',false:'pageFootADisable'}[fir]">首页</a>
+        <a href="javascript:void(0)" ng-click="prePage()" ng-class="{true:'pageFootA',false:'pageFootADisable'}[fir]">上一页</a>
+        <a href="javascript:void(0)" ng-click="nextPage()" ng-class="{true:'pageFootA',false:'pageFootADisable'}[last]">下一页</a>
+        <a href="javascript:void(0)" ng-click="lastPage()" ng-class="{true:'pageFootA',false:'pageFootADisable'}[last]">末页</a>
+        <input type="number" style="width:50px;" name="whichPage" value="{{curPage}}" ng-model="whichPage">
+        <button ng-click="goToPage()">Go</button>&nbsp;
+        每页：10/<span style="color:#F1690E">{{allCount}}</span>条 &nbsp;
+        页数：<span style="color:rgb(152,203,0)">{{curPage}}</span>/<span>{{allPage}}</span>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="LoginApp">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/angular/angular.min.js"></script>
+    <script src="../js/angular/ngStorage.js"></script>
+    <script src="../js/login.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/style.css">
+    <title>跳蚤市场-用户登录</title>
+</head>
+<body>
+<div class="tableContainer" style="background-color:rgb(152,203,0);width:100%;max-height:10px;">
+    <div style="margin-left:100px"></div>
+    <div id="logo"><a href="../main.html"><img src="../icon/main_logo.png" width="200" height="80"
+                                               alt="Flea Market"></a>
+
+        <div class="person_name" style="margin-right:800px;margin-top:40px;float:right; color:white;">用户登录</div>
+    </div>
+</div>
+
+<div class="whole" style="height:400px">
+    <div class="centerContainer">
+        <br>
+
+        <div class="tableRow">
+            <div id="loginimg"><img src="../icon/login_logo.png" width="300" height="227" alt="login_picture"></div>
+            <div id="login_part" style="vertical-align:top;" ng-controller="loginController">
+                <form id="LoginForm" name="LoginForm" novalidate>
+                    <p>邮箱</p>
+                    <input class="login_input" type="email" name="user_name" ng-model="user_name" required>
+
+                    <div ng-show="LoginForm.user_name.$dirty">
+                        <div class="error" ng-show="LoginForm.user_name.$error.required">请输入邮箱</div>
+                        <div class="error"
+                             ng-show="LoginForm.user_name.$error.email && !LoginForm.user_name.$error.required">不符合邮箱格式
+                        </div>
+                    </div>
+                    <p>密码</p>
+                    <input class="login_input" type="password" name="user_password" ng-model="user_password" required>
+
+                    <div ng-show="LoginForm.user_name.$dirty">
+                        <div class="error" ng-show="LoginForm.user_password.$error.required">请输入密码</div>
+                    </div>
+                    <p></p>
+
+                    <div class="submit_part">
+                        <button class="submit_button" ng-click="loginForm()" ng-disabled="LoginForm.$invalid">登录
+                        </button>
+                    </div>
+                    <div id="other_login">
+                        <br>
+                        <hr color="grey">
+                        <p>使用合作账号登录</p>
+
+                        <p>QQ &nbsp;新浪 &nbsp;微信</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

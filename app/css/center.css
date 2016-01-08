@@ -1,0 +1,60 @@
+.wr{
+    border:#66CC33 solid 2px;
+    margin-top:5px;
+    padding:10px 10px 0px 10px;
+}
+.list_content{
+    list-style-position:outside;
+    list-style-type: none;
+    line-height:150%;
+    padding:3px;
+    margin-top:4px;
+}
+
+.list_message {
+    font-family:'Î¢ÈíÑÅºÚ', 'ºÚÌå', 'Arial Unicode MS', sans-serif;
+    font-size:13px;
+    float:left;
+    width:200px;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    /*border:1px solid black;*/
+    padding-right:20px;
+}
+
+.status{
+    font-family:'Î¢ÈíÑÅºÚ', 'ºÚÌå', 'Arial Unicode MS', sans-serif;
+    font-size:13px;
+    /*width:80px;*/
+    /*border:1px solid brown;*/
+}
+.order_name{
+    font-family:'Î¢ÈíÑÅºÚ', 'ºÚÌå', 'Arial Unicode MS', sans-serif;
+    font-size:13px;
+    text-overflow:ellipsis;
+    width:200px;
+    /*height:20px;*/
+    overflow:hidden;
+    white-space:nowrap;
+    /*border:1px solid brown;*/
+}
+
+.itemPersonContent{
+    font-family:'Î¢ÈíÑÅºÚ', 'ºÚÌå', 'Arial Unicode MS', sans-serif;
+    font-size:13px;
+    text-decoration:underline;
+    color:#990;
+    font-weight:bold;
+    /*border:1px solid brown;*/
+}
+.itemPersonContent:hover{
+    color:yellow;
+}
+
+.displayPersonInfo{
+    /*display: none;*/
+}
+.modifyPersonInfo{
+    /*display: none;*/
+}

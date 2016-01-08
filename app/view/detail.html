@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8"/>
+    <script src="../js/angular/angular.min.js"></script>
+    <script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
+    <script src="../js/main.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/style.css"/>
+    <title>跳蚤市场-商品详情</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+
+<body>
+<div class="top_bar" ng-controller="GetCityController">
+    所在城市：<span id="mycity"></span>[<a href="">切换城市</a>]
+    <div class="personDetail">
+        <span id="signupAndLogin">
+        <a href="login.html">登录</a>&nbsp;
+        <a href="signup.html">注册</a>
+        </span>
+        <span id="myDetail" style="display: none">
+            <a href="center.html" title="个人中心" target="_blank"><span>{{$root.name}}</span></a>&nbsp;
+            <a href="javascript:void(0)" ng-click="exit()">退出</a>
+        </span>
+    </div>
+</div>
+<div class="tableContainer" style="background-color:rgb(152,203,0);width:100%;max-height:10px;">
+    <div class="tableRow">
+        <div id="logo"><a href="../main.html"><img src="../icon/main_logo.png" width="200" height="80"
+                                                   alt="Flea Market"></a></div>
+        <div id="search">
+            <input type="text" name="search_content" placeholder="输入关键字或类别搜索">
+            <input id="search_button" type="button" value="搜索">
+        </div>
+        <div id="post">
+            <input id="post_button" type="button" value="我要发帖" onclick="window.open('product_addition.html')"></button>
+        </div>
+    </div>
+</div>
+<div class="whole" ng-controller="getGoodsDetailCtrl"><br>
+    <br>
+
+    <div class="contentContainer" style="margin-left:150px;">
+        <div class="tableRow">
+            <div id="thingimg"><img ng-src="{{goods.picPaths[0]}}" width="300" height="300" alt="thingimg"/></div>
+            <div style="display: table-cell;">
+                <div id="detail_name">{{goods.name}}</div>
+                <div>
+                    <div id="bargain" style="margin-left:5px;">{{goods.IsBargin}}</div>
+                    <div id="detail_price">价格：<span>{{goods.price}}</span></div>
+                </div>
+                <div id="detail_addr">交易地点：<span>{{goods.locate}}</span></div>
+                <div id="detail_way">交易方式：<span>{{goods.method}}</span></div>
+                <div id="detail_seller">卖家：<span>{{goods.salePerson}}</span></div>
+                <div id="detail_phone">电话：<span>{{goods.phone}}</span></div>
+                <div id="detail_qq">QQ：<span>{{goods.qq}}</span></div>
+                <div id="detail_time">发布时间：<span>{{goods.date}}</span></div>
+                <br><br><br>
+                <button type="button" class="cancelcollect" style="font-size: 16px;" ng-click="addCollection(goods.id)">添加收藏</button>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="other_display">
+        <div class="contentContainer">
+            <div class="tableRow">
+                <div class="section_title" style="margin-left:150px;width:70px;text-align:center;">详细信息</div>
+                <div style="margin-left:150px; width:700px;margin-bottom:15px;border:1px solid #66CC33"></div>
+            </div>
+        </div>
+    </div>
+    <div class="contentContainer">
+        <div class="tableRow">
+            <div id="decription">
+                {{goods.description}}
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="other_display">
+        <div class="contentContainer">
+            <div class="tableRow">
+                <div class="section_title" style="margin-left:150px;width:70px;text-align:center;">物品图片</div>
+                <div style="margin-left:150px; width:700px;margin-bottom:15px;border:1px solid #66CC33">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contentContainer">
+        <div  ng-repeat="pic in goods.picPaths" id="detail_img" style="margin-left:150px;">
+            <img ng-src="{{pic}}" width="500" ;height="500" ;alt="detail_img"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

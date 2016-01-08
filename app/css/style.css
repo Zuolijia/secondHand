@@ -1,0 +1,822 @@
+body{
+    /*font-family:Verdana,Geneva,Arial,sans-serif;*/
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    font-weight: bold;
+    background-color:#E3E3E3;
+    height:100%;
+}
+.mainContent{
+    width:820px;
+    margin:0 auto;
+    border:1px solid white;
+}
+.top_bar {
+    background: gainsboro;
+    padding: 5px 10px 5px 10px;
+    margin: 0 auto;
+}
+
+.top_bar .personDetail {
+    float: right;
+}
+
+.top_bar a:link {
+    color: #666;
+}
+
+
+.top_bar a:hover {
+    color: #F9BD20;
+}
+
+.tableContainer {
+    display: table;
+    border-spacing: 20px;
+}
+.tableContainerGoods {
+    display: table;
+    margin-left: 20px;
+    border-spacing: 15px;
+    border : 2px solid #66CC33;
+    margin-top :4px;
+}
+.tableContainerHots {
+    display: table;
+    margin-left: 0px;
+    padding-left:0px;
+    border-spacing: 20px;
+}
+.tableRow {
+    display: table-row;
+}
+.tableCell {
+    display:table-cell;
+    width:260px;
+}
+
+.newgoods {
+    display: table-cell;
+    color:darkgray;
+    font-size: 80%;
+}
+
+#logo {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#search {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 20px;
+}
+
+#post{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#aside_bar {
+    display: table-cell;
+    vertical-align: top;
+    width:180px;
+}
+
+.other_display {
+    display: table-cell;
+    vertical-align: top;
+}
+#search input{
+    height:25px;
+    width:200px;
+}
+#search #search_button{
+    background-color: white;
+    margin:0 0 0 0;
+    height:30px;
+    width:80px;
+    font-family:'黑体', 'Arial Unicode MS', sans-serif;
+    font-weight: bold;
+    color: rgb(152,203,0);
+    font-size:16px;
+    border:none;
+}
+#post #post_button{
+    background-color: #F9BD20;
+    margin:0 0 0 0;
+    height:30px;
+    width:80px;
+    font-family:'黑体', 'Arial Unicode MS', sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size:16px;
+    border:none;
+}
+
+#classify{
+    list-style-position:outside;
+    list-style-type: none;
+    padding:0;
+    margin:0;
+}
+#all_classify{
+    background-color: #66CC33;
+    padding: 5px 0px 5px 5px;
+    margin-bottom:0;
+    color: white;
+    font-size:16px;
+    border:1px solid #66CC33;
+}
+.classify_cell {
+    border:1px solid #66CC33;
+    border-top:none;
+    padding:5px 0px 5px 5px;
+}
+.classify_title a{text-decoration:none;color:black;}
+.classify_title a:hover{color:#F9BD20;}
+
+.classify_small_title{
+    font-size:60%;
+    color:darkgray;
+}
+.section_title {
+    background: #66CC33;
+    color:white;
+    font-size:0.8em;
+    border:1px solid #66CC33;
+    border-radius:5px;
+    padding:5px;
+	font-size:15px;
+}
+.message {
+    width:200px;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    //border:1px solid green;
+}
+.date{
+    float:right;
+}
+.content{
+    list-style-position:outside;
+    list-style-type: none;
+    line-height:150%;
+    padding:3px;
+    margin-top:4px;
+    border:2px solid #66CC33;
+    color:gray;
+    font-size:90%;
+}
+
+.new_name{
+	width:130px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	}
+
+.linkToAllGoods{
+    color:#66CC33;
+    text-decoration:none;
+    font-size:120%;
+}
+
+.linkToAllGoods:hover {
+    color:#F9BD20;
+    text-decoration:none;
+    font-size:120%;
+}
+.tableContainerFoot{
+    display:table;
+    margin-left: 20px;
+    margin-right:20px;
+}
+.titleClassify{
+    color:#66CC33;
+    text-decoration:none;
+	}
+
+.titleClassify:hover{
+    color:#F9BD20;
+    text-decoration:none;
+}
+
+#contentBook{
+    list-style-position:outside;
+    list-style-type: none;
+    line-height:180%;
+    font-size:80%;
+    padding:3px;
+    margin-top:4px;
+}
+#contentTraffic{
+    list-style-position:outside;
+    list-style-type: none;
+    line-height:180%;
+    font-size:80%;
+    padding:4px;
+    margin-top:4px;
+    border-bottom:1px grey dashed;//dashed
+}
+#contentDailyUse{
+    list-style-position:outside;
+    list-style-type: none;
+    line-height:180%;
+    font-size:80%;
+    padding:4px;
+    margin-top:4px;
+}
+#contentElectrical{
+    list-style-position:outside;
+    list-style-type: none;
+    line-height:180%;
+    font-size:80%;
+    padding:4px;
+    margin-top:4px;
+    border-bottom:1px grey dashed;//dashed
+}
+#contentSports{
+    list-style-position:outside;
+    list-style-type: none;
+    line-height:180%;
+    font-size:80%;
+    padding:4px;
+    margin-top:4px;
+}
+.itemContent{
+    text-decoration:none;
+    display:block;
+}
+.itemContent:link {
+    color:gray;
+}
+.itemContent:hover {
+    color:#F9BD20;
+}
+.itemContent:visited{
+    color:dimgrey;
+}
+
+.itemContentFoot{
+    text-decoration:none;
+    display:block;
+}
+.itemContentFoot:link{
+    color:grey;
+}
+.itemContentFoot:visited{
+    color:dimgrey;
+}
+.itemContentFoot:hover{
+    color:#F9BD20;
+}
+
+
+/*login_css*/
+#loginimg{
+	display:table-cell;
+	margin-left:10%;
+	margin-top:10%;
+	}
+
+#login_part {
+    /*position:absolute;*/
+	display:table-cell;
+    left:50%;
+    width:200px;
+    color: #556A6C;
+}
+.login_input {
+    width:200px;
+    height: 20px;
+}
+.submit_part {
+    text-align: center;
+}
+.submit_button {
+    background-color:rgb(152,203,0);
+    margin:0 0 0 0;
+    height:30px;
+    width:100px;
+    border-radius:10px;
+    font-family:Verdana,Geneva,Arial,sans-serif;;
+    font-weight: bold;
+    color:white;
+    font-size:14px;
+	border:none;
+}
+#other_login {
+    text-align: center;
+    color:grey;
+}
+
+/*signup_css*/
+#signup_form {
+    padding:20px;
+}
+#other_signup {
+    top:200px;
+    left:50%;
+    width:200px;
+    border-left: 1px solid grey;
+    padding:10px;
+    color:grey;
+	display:table-cell;
+}
+.error {
+    color:#fa787e;
+}
+
+#signupAndLogin a{color:#666;}
+
+#signupAndLogin a:hover{
+	color:#F9BD20;
+	}
+
+	
+
+/*个人中心*/
+.centerContainer {
+    display: table;
+    border-spacing: 100px 10px;/*分别设置单元格间水平和垂直的距离*/
+    /*border:green solid 1px;*/
+}
+
+.contentContainer{
+    display: table;
+    border-spacing: 20px 0px;/*分别设置单元格间水平和垂直的距离*/
+    width:500px;
+    /*border:green solid 1px;*/
+}
+#center_logo {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.person_name {
+    display: table-cell;
+    vertical-align: top;
+    font-size:30px;
+    color:#066;
+    font-weight:bold;
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    /*border:green solid 1px;*/
+}
+
+.person_name input{
+    border:none;
+}
+
+.person_name a{
+    text-decoration: none;
+    color:#066;
+}
+
+.person_name a:hover{
+    color:#F9BD20;
+}
+
+#center_pic {
+    display: table-cell;
+    vertical-align: top;
+    width:150px;
+    /*border: green solid 1px;*/
+}
+
+/*个人信息*/
+#person_info {
+    display: table-cell;
+    border:#66CC33 solid 2px;
+    vertical-align: middle;
+}
+
+#modify{
+    float:right;
+    padding-right:10px;
+    padding-top:5px;
+}
+
+#modify input{
+    border:none;
+}
+
+#info_title{
+    font-size:20px;
+    font-weight:bold;
+    margin-top:5px;
+    display: table-cell;
+    vert-align: top;
+    column-span: 2;
+}
+
+#info_title,#nickname,#realname,#phone,#qq{
+    display:table-cell;
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    /*border:brown solid 1px;*/
+}
+
+#nickname,#realname,#phone,#qq{
+    font-size:13px;
+}
+
+#locate,#school{
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    font-size:13px;
+    display: table-cell;
+    /*border:brown solid 1px;*/
+}
+
+/*我的买单*/
+.catalogue1{
+    padding: 5px 0px 0px 5px;
+    margin-bottom:0;
+    color:#390;
+    font-size:17px;
+    width:70px;
+}
+
+.catalogue1 a{
+    text-decoration: none;
+    color:#390;
+}
+
+.catalogue1 a:hover{
+    color:#F9BD20;
+}
+
+
+#catalogue2{
+    margin:3px 0px 3px 15px;
+    color:#000;
+    font-size:13px;
+}
+
+.more{
+    float:right;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+}
+
+.more a{
+    text-decoration:none;
+    color:#000000;
+}
+
+.more a:hover{color:#F9BD20;}
+
+.deal_way{
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    font-size:13px;
+    vertical-align:middle;
+    display:table-cell;
+    width:20%;
+}
+
+.order_detail{
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    font-size:13px;
+    text-decoration:underline;
+    color:#990;
+    font-weight:bold;
+    float:right;
+    width:100px;
+}
+
+#side_bar{
+    width:150px;
+    display: table-cell;
+    vertical-align: top;
+    /*border:green solid 1px;*/
+}
+
+.centerContainer #side_bar{
+    border:none;
+}
+
+.centerContainer .other_display{
+    border:none;
+}
+
+.table_wr{
+    border:#66CC33 solid 2px;
+    margin-top:5px;
+    display:table;
+    width:100%;
+}
+
+/*商品列表页面*/
+#guide{
+    font-size:18px;
+    margin-left:20px;
+    color:#969696;
+    font-weight:bold;
+}
+
+#guide a{
+    text-decoration:none;
+    color:#969696;
+    font-size:18px;
+}
+
+#guide a:hover{color:#F9BD20;}
+
+#list_title{
+    display:table-cell;
+    border:#CCC solid 1px;
+}
+
+#type input,#newold input,#price input,#area input{
+    background-color:transparent;
+    text-align:left;
+    border:none;
+}
+
+#type{
+    margin-top:10px;
+}
+
+#type,#newold,#price,#area{
+    margin-bottom:10px;
+}
+
+#order_way input{
+    border:#66CC33 solid thin;
+    background-color:#EEE;
+    padding:2px;
+}
+
+#order_way{
+    width:100%;
+    border-top:#66CC33 solid 10px;
+}
+
+.listContainer{
+    display:table;
+    border-spacing:0px 10px;
+    border-bottom: #bbbcbc solid 1px;
+    width:100%;
+}
+
+.thing,.thingprice{
+    display:table-cell;
+    vertical-align:middle;
+    font-size:13px;
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+}
+.thing{width:25px;padding-left:25px;}
+
+.thingname{
+    vertical-align:middle;
+    font-size:15px;
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    width:300px;
+    text-overflow:ellipsis;
+    height:20px;
+    overflow:hidden;
+    white-space:nowrap;
+}
+.thingprice{
+    width:50px;
+    color:#F1690E;
+    font-weight:bold;
+	font-size:15px;
+}
+
+/*商品详情页*/
+#thingimg{display:table-cell;}
+
+#thingimg,#detail_name{
+    vertical-align:top;
+}
+
+
+#detail_name{
+    font-size:20px;
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    margin:3px 0 3px 0;
+    width:300px;
+}
+
+#bargain,#detail_addr,#detail_way,#detail_seller,#detail_phone,#detail_qq,#detail_time{
+    font-size:15px;
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    margin:3px 0 3px 0;
+}
+
+#detail_price{
+    font-size:18px;
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    color:#F1690E;
+    font-weight:bold;
+    margin:3px 0 3px 0;
+}
+
+#bargain{
+    float:right;
+    margin-right:120px;
+    background-color:#F9BD20;
+    border-radius:5px;
+    color:white;
+    font-weight:bold;
+    border:none;
+    width:70px;
+    text-align: center;
+}
+
+/*#bargain input{*/
+    /**/
+/*}*/
+
+#decription{
+    margin-top:0;
+    font-size:15px;
+    margin-left:150px;
+    width:700px;
+}
+
+#detail_img img{
+    vertical-align:middle;
+    margin-left:20%;
+	margin-bottom:15px;
+}
+
+/*我的收藏页面*/
+.collectionname{
+    vertical-align:middle;
+    font-size:18px;
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    width:500px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.cancelcollect{
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    float:right;
+    background-color:#F9BD20;
+    border-radius:5px;
+    color:white;
+    font-weight:bold;
+    border:none;
+}
+
+/*我的卖单页面*/
+.salestate{
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    font-size:15px;
+}
+
+.soldout{
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    float:right;
+    background-color:#F9BD20;
+    border-radius:5px;
+    color:white;
+    font-weight:bold;
+    border:none;
+    margin-left:10px;
+}
+
+/*整体居中*/
+#search{margin-left:500px;}
+
+.whole{
+    margin:0 auto;
+    width:1000px;
+    background-color:white;
+    height:inherit;
+}
+
+/*赖*/
+/*product_addition_css*/
+.new_product_info {
+    font-size:20px;
+    line-height:3;
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    padding-left:15%;
+    padding-top:30px;
+    width:900px;
+}
+
+.new_product_info select{/*选择框*/
+    font-size:15px;
+    width:120px;
+    height:27px;
+    text-align:center;
+    margin-top:10px;
+}
+.small {
+    font-size:12px;
+    font-weight:200;
+}
+.new_product_info label{
+    margin-top:10px;
+    cursor:pointer;
+    display:inline-block;
+    padding:7px 6px;
+    text-align:right;
+    width:150px;
+    vertical-align:top;
+}
+
+.nproduct_submit_btn{
+    background-color:#44C032;
+    border:none;
+    border-radius:4px;
+    color:#fff;
+    width:90px;
+    height:40px;
+    font-size:18px;
+    font-weight:bolder;
+    margin-left:35%;
+	
+	
+}
+/*单选框*/
+.radios{
+    background-color:transparent;
+    position:relative;
+    margin-bottom:0;
+    border:inherit;
+}
+.radios label{
+    margin-right:5px;
+    width:auto;
+}
+
+
+
+/**密码修改**/
+.password_modify{
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS', sans-serif;
+    padding-left:30px;
+    padding-top:13px;
+    width:600px;
+
+}
+
+.password_modify h1{
+    line-height:2.5;
+    color:#066;
+    margin-left:50px;
+
+}
+.password_modify label{
+    font-size:20px;
+    font-weight:300;
+    line-height:2
+cursor:pointer;
+    display:inline-block;
+    padding:3px, 6px;
+    text-align:right;
+    width:200px;
+    vertical-align:top;
+}
+
+.password_modify p{
+    line-height:none;
+    color:#777;
+    font-size:12px;
+    font-weight:200;
+    margin-left:200px;
+}
+
+.pwmdf_submit_btn{
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS';
+    background-color:rgb(152,203,0);
+    border:none;
+    border-radius:10px;
+    color:white;
+    width:100px;
+    height:30px;
+    font-size:14px;
+    font-weight:bold;
+    margin:30px 220px;	
+}
+
+/*for newpage*/
+#pageDir{
+	width:1000px;
+	height:inherit;
+	margin-left:220px;
+}
+
+.pageFoot{
+    font-family:'微软雅黑', '黑体', 'Arial Unicode MS';
+    text-align: center;
+    margin:40px 0px 30px 0px;
+}
+.pageFootA{
+    color:rgb(152,203,0);
+}
+.pageFootA:hover{
+    color:#F9BD20;
+}
+
+.pageFootADisable{
+    color:grey;
+    text-decoration:none;
+}
+

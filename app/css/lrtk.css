@@ -1,0 +1,16 @@
+/* CSS Document */
+body,ul,li{ padding:0; margin:0;}
+ul,li{ list-style:none;}
+img{ border:none;}
+a{ color:#6cf;}
+a:hover{ color:#84B263;}
+.box{ width:565px; position:relative; overflow:hidden; _height:100%; margin-left: 20px; border-spacing: 15px; border : 2px solid #66CC33;margin-top :4px;}
+.picbox{ width:565px; height:150px; overflow:hidden; position:relative;}
+.piclist{ height:115px;position:absolute; left:10px; top:0px}
+.piclist li{ background:#eee; margin-right:25px; padding:5px; float:left;}
+.swaplist{ position:absolute; left:570px; top:0px;}
+.og_prev,.og_next{ width:30px; height:50px; background:url(../icon/icon.png) no-repeat; background:url(../icon/icon_ie6.png) no-repeat\9; position:absolute; top:45px; z-index:99; cursor:pointer;filter:alpha(opacity=70); opacity:0.7;}
+.og_prev{ background-position:0 -60px; left:4px;}
+.og_next{ background-position:0 0; right:4px;}
+
+

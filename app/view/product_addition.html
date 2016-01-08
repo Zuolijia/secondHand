@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    
+    <script src="../js/angular/angular.min.js"></script>
+    <script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/add_prd.js"></script>
+    <!--上传图片插件-->
+    <script type="text/javascript" src="../js/zyUpload/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="../js/zyUpload/core/zyFile.js"></script>
+    <script type="text/javascript" src="../js/zyUpload/control/js/zyUpload.js"></script>
+    <script type="text/javascript" src="../js/zyUpload/demo.js"></script>    <!--图片插件end-->
+        
+    <!-- 引用控制层插件样式 -->
+    <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../js/zyUpload/control/css/zyUpload.css" type="text/css">
+    <link type="text/css" rel="stylesheet" href="../css/style.css">
+	
+    <title>商品添加页</title>
+</head>
+
+<body>
+<div class="top_bar" ng-controller="GetCityController">
+    所在城市：<span id="mycity"></span>[<a href="">切换城市</a>]
+    <div class="personDetail">
+        <span id="signupAndLogin">
+        <a href="login.html">登录</a>&nbsp;
+        <a href="signup.html">注册</a>
+        </span>
+        <span id="myDetail" style="display: none">
+            <a href="center.html" title="个人中心" target="_blank"><span>{{$root.name}}</span></a>&nbsp;
+            <a href="javascript:void(0)" ng-click="exit()">退出</a>
+        </span>
+    </div>
+</div>
+<div class="tableContainer" style="background-color:rgb(152,203,0);width:100%;max-height:10px;">
+    <div class="tableRow">
+        <div id="logo"><a href="../main.html"><img src="../icon/main_logo.png" width="200" height="80"
+                                                   alt="Flea Market"></a></div>
+        <div id="search">
+            <input type="text" name="search_content" placeholder="输入关键字或类别搜索">
+            <input id="search_button" type="button" value="搜索">
+        </div>
+        <!--<div id="post">-->
+            <!--<input id="post_button" type="button" value="我要发帖"></button>-->
+        <!--</div>-->
+    </div>
+</div>
+<div class="whole">
+
+    <!-- 商品信息添加 -->
+    <div class="new_product_info">
+        <form onSubmit="return false" name="frm">
+            <!--域名待填充-->
+            <div style="display:table;border-spacing:0 10px;">
+                <div class="tableRow">
+                    <p style="display:table-cell;">商品标题：
+                        <input type="text" style="display:table-cell;width:150px; height:22px;vertical-align:top;"
+                               name="title"
+                               id="title" required autofocus/>
+                    </p>
+                </div>
+                
+                <div class="tableRow">
+                    <p style="display:table-cell;">商品分类：
+                       <SELECT NAME="categoryId" id="categoryId" onChange="getcategory()">  
+                            <OPTION VALUE="0">一级分类</OPTION>  
+                            <OPTION VALUE="书本教材">书本教材</OPTION>  
+                            <OPTION VALUE="交通工具">交通工具</OPTION>  
+                            <OPTION VALUE="日常用品">日常用品</OPTION>  
+                            <OPTION VALUE="数码电器">数码电器</OPTION>    
+                            <OPTION VALUE="文体娱乐">文体娱乐</OPTION>  
+                        </SELECT>    
+                        <SELECT NAME="subcategoryId" id="subcategoryId">    
+                            <OPTION VALUE="0">二级分类</OPTION>    
+                        </SELECT>    
+                    </p>
+                </div>
+                <div class="tableRow">
+                    <p style="display:table-cell;">新旧程度：
+                        <select id="recency" name="recency">
+                            <option selected>请选择</option>
+                            <option value="10">全新</option>
+                            <option value="9">9成新</option>
+                            <option value="8">8成新</option>
+                            <option value="7">7成新</option>
+                            <option value="6">6成新及以下</option>
+                            <option value="5">其它</option>
+                        </select>
+                    </p>
+                </div>
+
+                <div class="tableRow">
+                    <p style="display:table-cell;">交易方式：
+                        <select id="delivery" name="delivery">
+                            <option selected>请选择</option>
+                            <option value="1">面对面交易</option>
+                            <option value="2">快递</option>
+                            <option value="3">面对面、快递</option>
+                        </select>
+                    </p>
+                </div>
+                
+                <div class="tableRow">
+                    <div style="margin:2px 0 0 0;width:900px;">
+                        <div style="float:right;margin-right:350px;">
+                            <label style="display：inline-block;width:80px;line-height:10px;">
+                                <input name="argualbe" type="radio" value="true"/>
+                                可议价</label>
+                            <label style="display:inline-block;width:100px;line-height:10px;">
+                                <input name="argualbe" type="radio" value="false"/>
+                                不可议价 </label>
+                        </div>
+                        <p style="display:table-cell;">商品价格(元)：
+                            <input type="text" style="width:200px; height:22px;" name="price"
+                                   id="price"
+                                   required="required"/>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="tableRow">
+                    <p style="display:table-cell;">交易地点：
+                        <input type="text" style="width:300px; height:22px;" name="tradeVenue" id="tradeVenue"
+                               required="required"/>
+                    </p>
+                </div>
+
+                <div style="height:2px;"></div>
+                
+                <div class="tableRow">
+                    <div style="display:table-cell;vertical-align:top;">商品描述：
+            <textarea id="description" name="description"
+                      cols="47" rows="5" class="field-large" style="margin-right:415px;;float:right;"></textarea>
+                    </div>
+                </div>
+
+                <div class="tableRow"><!--t图片添加部分，插件-->
+                    <div style="display:table-cell;margin-top:0;padding-top:0;">
+                        <div style="display:table-cell;">
+
+                            <div class="tableRow">
+                                <div style="display:table-cell;width:90px;vertical-align:top;">添加图片：</div>
+                            </div>
+                            <div class="small" style="display:table-cell;vertical-align:top;margin-top:0;">(最多上传5张)
+                            </div>
+                        </div>
+                        <div id="demo" class="demo"
+                             style="display:table-cell;vertical-align:top;margin-left:100px;margin-top:0;"></div>
+
+                    </div>
+                </div>
+                
+                <div class="tableRow">
+                    <button  class="nproduct_submit_btn"  id="sbm" onClick="newprd_add()">提交</button>
+                </div>
+        </form>
+    </div>
+  
+</div>
+</body>
+</html>

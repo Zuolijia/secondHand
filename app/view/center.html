@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/angular/angular.min.js"></script>
+    <script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/center.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/style.css">
+    <link type="text/css" rel="stylesheet" href="../css/center.css">
+    <title>跳蚤市场-个人中心</title>
+</head>
+
+<body>
+<div class="top_bar" ng-controller="GetCityController">
+    所在城市：<span id="mycity"></span>[<a href="">切换城市</a>]
+    <div class="personDetail">
+        <span id="signupAndLogin">
+        <a href="login.html">登录</a>&nbsp;
+        <a href="signup.html">注册</a>
+        </span>
+        <span id="myDetail" style="display: none">
+            <a href="view/center.html" title="个人中心" target="_blank"><span>{{$root.name}}</span></a>&nbsp;
+            <a href="javascript:void(0)" ng-click="exit()">退出</a>
+        </span>
+    </div>
+</div>
+
+<div class="tableContainer" style="background-color:rgb(152,203,0);width:100%;max-height:10px;">
+    <div class="tableRow">
+        <div id="logo"><a href="../main.html"><img src="../icon/main_logo.png" width="200" height="80"
+                                                   alt="Flea Market"></a></div>
+        <div id="search">
+            <input type="text" name="search_content" placeholder="输入关键字或类别搜索">
+            <input id="search_button" type="button" value="搜索">
+        </div>
+        <div id="post">
+            <input id="post_button" type="button" value="我要发帖" onclick="window.open('product_addition.html')"></button>
+        </div>
+    </div>
+</div>
+
+<div class="whole">
+    <div class="centerContainer">
+        <div class="tableRow">
+            <div style="width:150px" class="person_name">个人中心</div>
+            <div class="person_name" id="displayNick"></div>
+        </div>
+    </div>
+
+    <div class="centerContainer">
+        <div class="tableRow">
+            <div id="center_pic"><img src="../icon/center_pic.jpg" alt="Flea Market"></div>
+            <div id="person_info" ng-controller="infoTitleCtrl">
+                <div class="contentContainer">
+                    <div class="tableRow">
+                        <div id="info_title">个人信息</div>
+                        <div style="display:table-cell;">
+                            <div id="modify">
+                                <button style="background-color:#66CC33;color:white;font-weight:bold;border-radius: 5px 5px 5px 5px;"
+                                        ng-show="btModify" ng-click="modify()">
+                                    修改
+                                </button>
+                                <button style="background-color:#66CC33;color:white;font-weight:bold;border-radius: 5px 5px 5px 5px;"
+                                        ng-hide="btModify" ng-click="confirmModify()">
+                                    确定
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tableRow">
+                        <div id="nickname">昵称：<span ng-show="btModify">{{nickname}}</span>
+                            <input type="text" ng-model="nickname" style="width: 50px;" ng-hide="btModify"></div>
+                        <div id="realname">真实姓名：<span class="displayPersonInfo" ng-show="btModify">{{realname}}</span>
+                            <input type="text" ng-model="realname" style="width: 50px;" ng-hide="btModify"></div>
+                    </div>
+                    <div class="tableRow">
+                        <div id="phone">电话：<span>{{phone}}</span>
+                            <!--<input type="number" value="{{phone}}" ng-model="phone" style="width:100px;"-->
+                                   <!--ng-hide="btModify">-->
+                        </div>
+                        <div id="qq">QQ：<span ng-show="btModify">{{qq}}</span>
+                            <input type="text" ng-model="qq" pattern="^\d{6,10}$" style="width:100px;" ng-hide="btModify">
+                        </div>
+                    </div>
+                    <div class="tableRow">
+                        <div id="locate">地标：<span ng-show="btModify">{{locate}}</span>
+                            <input type="text" ng-model="locate" style="width:100px;"
+                                   ng-hide="btModify"></div>
+                        <div id="school">学校：<span ng-show="btModify">{{school}}</span>
+                            <input type="text"  ng-model="school" style="width:100px;"
+                                   ng-hide="btModify"></div>
+                    </div>
+                </div>
+                <!--<span id="locate">地标：<span ng-show="btModify">{{locate}}</span>-->
+                <!--<input type="text" ng-model="locate" style="width:200px" ng-hide="btModify">-->
+                <!--</span>-->
+            </div>
+        </div>
+        <div class="tableRow">
+            <div id="side_bar">
+                <div style="width:150px">
+                    <nav>
+                        <ul class="catalogue1">
+                            <li class="catalogue1"><a href="collection.html">我的收藏</a></li>
+                            <li class="catalogue1"><a href="sale.html">我的卖单</a></li>
+                            <!-- <li id="catalogue1">我的求购</li>
+                               <li id="catalogue2">发起求购</li>
+                               <li id="catalogue2">求购记录</li>-->
+                            <li class="catalogue1"><a href="password.html">密码修改</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="other_display">
+                <br>
+                <!--收藏记录表头-->
+                <div class="more"><a href="collection.html">more >></a></div>
+                <section class="sec">
+                    <span class="section_title">我的收藏</span><br>
+                </section>
+                <!--收藏记录内容-->
+                <div class="wr">
+                    <ul class="list_content" ng-controller="personCollectionController">
+                        <li ng-repeat="item in collections">
+                            <div class="order_detail">
+                                <a class="itemPersonContent" href="javascript:void(0)" ng-click="goToGoods(item.id)">订单详情</a>
+                            </div>
+                            <div class="order_name">{{item.message}}</div>
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                <!--卖单记录表头-->
+                <div class="more"><a href="sale.html">more >></a></div>
+                <section class="sec">
+                    <span class="section_title">我的卖单</span><br>
+                </section>
+
+                <!--卖单记录内容-->
+                <div class="wr">
+                    <ul class="list_content" ng-controller="personSaleController">
+                        <li ng-repeat="item in sales">
+                            <div class="list_message">
+                                {{item.message}}
+                            </div>
+                            <div class="order_detail">
+                                <a class="itemPersonContent" href="javascript:void(0)" ng-click="goToGoods(item.id)">详细信息</a>
+                            </div>
+                            <div class="status">状态：{{item.status}}</div>
+                        </li>
+                    </ul>
+                    <!--<div class="tableRow">-->
+                    <!--<div class="order_name">出售托福、GRE考试...</div>-->
+                    <!--<div class="deal_way">状态：未卖出</div>-->
+                    <!--<div class="order_detail">详细信息</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="tableRow">-->
+                    <!--<div class="order_name">雅思真题7-10转让，7...</div>-->
+                    <!--<div class="deal_way">状态：未卖出</div>-->
+                    <!--<div class="order_detail">详细信息</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
