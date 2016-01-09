@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script src="../js/angular/angular.min.js"></script>
     <script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
+    <script src="../js/city.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/center.js"></script>
     <link type="text/css" rel="stylesheet" href="../css/style.css">
@@ -11,17 +12,22 @@
 </head>
 
 <body>
-<div class="top_bar" ng-controller="GetCityController">
-    所在城市：<span id="mycity"></span>[<a href="">切换城市</a>]
+<div class="top_bar" ng-controller="GetCityController as cBox">
+    所在城市：<span id="mycity"></span>[<a href="#" ng-mouseenter="show=true" ng-mouseleave="show=false">切换城市</a>]
     <div class="personDetail">
         <span id="signupAndLogin">
         <a href="login.html">登录</a>&nbsp;
         <a href="signup.html">注册</a>
         </span>
         <span id="myDetail" style="display: none">
-            <a href="view/center.html" title="个人中心" target="_blank"><span>{{$root.name}}</span></a>&nbsp;
+            <a href="center.html" title="个人中心" target="_blank"><span>{{$root.name}}</span></a>&nbsp;
             <a href="javascript:void(0)" ng-click="exit()">退出</a>
         </span>
+    </div>
+    <div id="cityBox" ng-show="show || box" ng-mouseenter="box=true">
+        <select name="province" class="province" ng-init="province.id='0'" ng-model="province.id" ng-change="cBox.provinceChange(province.id);city.id='0';" ng-options="id as name for (id,name) in cBox.provinceArr"></select>
+        <select name="city" class="city" ng-init="city.id='0'" ng-model="city.id" ng-change="cBox.cityChange(city.id);box=false" ng-options="id as name for (id,name) in cBox.getCityArr"></select>
+        <!--<button class="btn btn-default" ng-click="box=false">确定</button>-->
     </div>
 </div>
 

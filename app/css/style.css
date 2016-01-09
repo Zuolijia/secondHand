@@ -24,11 +24,19 @@ body{
     color: #666;
 }
 
-
 .top_bar a:hover {
     color: #F9BD20;
 }
-
+#cityBox{
+    border:1px solid #F9BD20;
+    margin-left: 130px;
+    padding:3px;
+    background: white;
+    filter:alpha(opacity=80);
+    -moz-opacity: 0.80;
+    opacity:0.80;
+    position:absolute;
+}
 .tableContainer {
     display: table;
     border-spacing: 20px;
@@ -769,7 +777,7 @@ body{
     line-height:2
 cursor:pointer;
     display:inline-block;
-    padding:3px, 6px;
+    padding:3px 6px;
     text-align:right;
     width:200px;
     vertical-align:top;

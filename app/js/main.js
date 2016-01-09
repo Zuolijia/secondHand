@@ -48,12 +48,35 @@ app.controller('GetCityController', function ($scope, $window, $rootScope) {
         x.innerHTML = "广州";//default值
     }
 
+    var cBox = this;
+    cBox.provinceArr = provinceArr;//省份数据
+    cBox.cityArr = cityArr;         //城市数据
+    cBox.getCityArr = cBox.cityArr[0];//默认省份
+    cBox.getCityIndexArr = ['0','0'];//索引数组，根据切换得出切换的索引就可以得到省份及城市
+
+    //改变省份触发的事件[根据索引更改城市数据]
+    cBox.provinceChange = function(index){
+        cBox.getCityArr = cBox.cityArr[index];
+        cBox.getCityIndexArr[1] ='0';
+        cBox.getCityIndexArr[0]=index;
+        //输出查看数据
+        console.log(cBox.getCityIndexArr,provinceArr[cBox.getCityIndexArr[0]],cityArr[cBox.getCityIndexArr[0]][cBox.getCityIndexArr[1]]);
+    };
+
+    //改变城市触发事件
+    cBox.cityChange = function(index) {
+        cBox.getCityIndexArr[1] = index;
+        //输出查看数据
+        console.log(cBox.getCityIndexArr, provinceArr[cBox.getCityIndexArr[0]], cityArr[cBox.getCityIndexArr[0]][cBox.getCityIndexArr[1]]);
+        x.innerHTML = cityArr[cBox.getCityIndexArr[0]][cBox.getCityIndexArr[1]];
+    };
+
     $scope.exit = function () {
         window.localStorage.setItem("user_name", "");
         window.localStorage.setItem("user_id", "");
         $window.location.reload();
         alert("已退出");
-    }
+    };
 
     var name = window.localStorage.getItem("user_name");
     var sig = document.getElementById("signupAndLogin");
