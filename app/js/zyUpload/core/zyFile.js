@@ -7,7 +7,7 @@ var ZYFILE = {
 		fileInput : null,             // 选择文件按钮dom对象
 		uploadInput : null,           // 上传文件按钮dom对象
 		dragDrop: null,				  //拖拽敏感区域
-		url : "",  					  // 上传action路径
+		url : "http://sysuflea.sinaapp.com/image/upload",  					  // 上传action路径
 		uploadFile : [],  			  // 需要上传的文件数组
 		lastUploadFile : [],          // 上一次选择的文件数组，方便继续上传使用
 		perUploadFile : [],           // 存放永久的文件数组，方便删除使用
@@ -138,15 +138,17 @@ var ZYFILE = {
 			var self = this;  // 在each中this指向没个v  所以先将this保留
 			// 遍历所有文件  ，在调用单个文件上传的方法
 			$.each(this.uploadFile, function(k, v){
-				self.funUploadFile(v);
+				setTimeout(self.funUploadFile( v ),50000);
+				//self.funUploadFile(v);
 			});
 		},
 		// 上传单个个文件
 		funUploadFile : function(file){
+			//console.info(file);
 			var self = this;  // 在each中this指向没个v  所以先将this保留
 			
 			var formdata = new FormData();
-			formdata.append("fileList", file);	         		
+			formdata.append("fileList", file);
 			var xhr = new XMLHttpRequest();
 			// 绑定上传事件
 			// 进度

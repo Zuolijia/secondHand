@@ -52,19 +52,19 @@ app.controller('GetCityController', function ($scope, $window, $rootScope) {
     cBox.provinceArr = provinceArr;//省份数据
     cBox.cityArr = cityArr;         //城市数据
     cBox.getCityArr = cBox.cityArr[0];//默认省份
-    cBox.getCityIndexArr = ['0','0'];//索引数组，根据切换得出切换的索引就可以得到省份及城市
+    cBox.getCityIndexArr = ['0', '0'];//索引数组，根据切换得出切换的索引就可以得到省份及城市
 
     //改变省份触发的事件[根据索引更改城市数据]
-    cBox.provinceChange = function(index){
+    cBox.provinceChange = function (index) {
         cBox.getCityArr = cBox.cityArr[index];
-        cBox.getCityIndexArr[1] ='0';
-        cBox.getCityIndexArr[0]=index;
+        cBox.getCityIndexArr[1] = '0';
+        cBox.getCityIndexArr[0] = index;
         //输出查看数据
-        console.log(cBox.getCityIndexArr,provinceArr[cBox.getCityIndexArr[0]],cityArr[cBox.getCityIndexArr[0]][cBox.getCityIndexArr[1]]);
+        console.log(cBox.getCityIndexArr, provinceArr[cBox.getCityIndexArr[0]], cityArr[cBox.getCityIndexArr[0]][cBox.getCityIndexArr[1]]);
     };
 
     //改变城市触发事件
-    cBox.cityChange = function(index) {
+    cBox.cityChange = function (index) {
         cBox.getCityIndexArr[1] = index;
         //输出查看数据
         console.log(cBox.getCityIndexArr, provinceArr[cBox.getCityIndexArr[0]], cityArr[cBox.getCityIndexArr[0]][cBox.getCityIndexArr[1]]);
@@ -95,98 +95,147 @@ app.controller('GetCityController', function ($scope, $window, $rootScope) {
 });
 
 //Start for main.html controller
-app.controller('hotAbroadContentController', function ($scope) {
-    $scope.hots = [
-        {message: "出售托福、GRE考试书籍", date: "09-23", id: "1"},
-        {message: "雅思真题7-10转让", date: "09-23", id: "2"},
-        {message: "托福词汇8成新", date: "09-21", id: "3"},
-        {message: "GMAT复习资料整套，中珠", date: "09-21", id: "4"},
-        {message: "雅思整套考试资料7成新", date: "09-19", id: "5"}
-    ];
-});
+app.controller('GetMainInfCtr', function ($scope, $window, $http) {
+    $http.get('http://sysuflea.sinaapp.com/page/front')
+        .success(function (data, status, headers, config) {
+            // Abroad Hots Information get
+            var foreignBooks = new Array(data.foreignBooks.length);
+            for (var i = 0; i < data.foreignBooks.length; i++) {
+                var cvtdate = (data.foreignBooks[i][2][1] < 9 ? ("0" + data.foreignBooks[i][2][1]) : data.foreignBooks[i][2][1]) + "-" + (data.foreignBooks[i][2][2] < 9 ? ("0" + data.foreignBooks[i][2][2]) : data.foreignBooks[i][2][2]);
+                foreignBooks[i] = {message: data.foreignBooks[i][1], date: cvtdate, id: data.foreignBooks[i][0]};
+                //alert(foreignBooks[i].date);
+            }
+            $scope.abroad_hots = foreignBooks;
 
-app.controller('hotTeachingContentController', function ($scope) {
-    $scope.hots = [
-        {message: "司法考试全套复习题大学城", date: "09-23", id: ""},
-        {message: "大英二级班整套教材8成新", date: "09-23", id: ""},
-        {message: "中大行政管理自考书籍", date: "09-23", id: ""},
-        {message: "10本考研政治辅导用书", date: "09-21", id: ""},
-        {message: "高数数一教材，附考试福利", date: "09-19", id: ""}
-    ];
-});
+            // Teaching Hots Information get
+            var proMaterials = new Array(data.professionalMaterials.length);
+            for (var i = 0; i < data.professionalMaterials.length; i++) {
+                var cvtdate = (data.professionalMaterials[i][2][1] < 9 ? ("0" + data.professionalMaterials[i][2][1]) : data.professionalMaterials[i][2][1]) + "-" + (data.professionalMaterials[i][2][2] < 9 ? ("0" + data.professionalMaterials[i][2][2]) : data.professionalMaterials[i][2][2]);
+                proMaterials[i] = {
+                    message: data.professionalMaterials[i][1],
+                    date: cvtdate,
+                    id: data.professionalMaterials[i][0]
+                };
+            }
+            $scope.teaching_hots = proMaterials;
 
-app.controller('hotBikeContentController', function ($scope) {
-    $scope.hots = [
-        {message: "上海凤凰牌女装车7成新", date: "09-23", id: ""},
-        {message: "山地车 中珠交易", date: "09-23", id: ""},
-        {message: "可折叠小轮车", date: "09-21", id: ""},
-        {message: "大学城女装车蓝色，赠锁", date: "09-21", id: ""}
-    ];
-});
+            // Bike Hots Information get
+            var bikecycles = new Array(data.bikecycles.length);
+            for (var i = 0; i < data.bikecycles.length; i++) {
+                var cvtdate = (data.bikecycles[i][2][1] < 9 ? ("0" + data.bikecycles[i][2][1]) : data.bikecycles[i][2][1]) + "-" + (data.bikecycles[i][2][2] < 9 ? ("0" + data.bikecycles[i][2][2]) : data.bikecycles[i][2][2]);
+                bikecycles[i] = {message: data.bikecycles[i][1], date: cvtdate, id: data.bikecycles[i][0]};
+            }
+            $scope.bike_hots = bikecycles;
 
-app.controller('hotElectricalContentController', function ($scope) {
-    $scope.hots = [
-        {message: "收音机8成新，比学校的好", date: "09-23", id: ""},
-        {message: "学校大众款收音机", date: "09-23", id: ""},
-        {message: "小天鹅洗衣机，无故障7成新", date: "09-21", id: ""}
-    ];
-});
+            // Ele Hots Information get
+            var appliances = new Array(data.appliances.length);
+            for (var i = 0; i < data.appliances.length; i++) {
+                var cvtdate = (data.appliances[i][2][1] < 9 ? ("0" + data.appliances[i][2][1]) : data.appliances[i][2][1]) + "-" + (data.appliances[i][2][2] < 9 ? ("0" + data.appliances[i][2][2]) : data.appliances[i][2][2]);
+                appliances[i] = {message: data.appliances[i][1], date: cvtdate, id: data.appliances[i][0]};
+            }
+            $scope.ele_hots = appliances;
+            $scope.electricals = appliances;
 
-app.controller('bookContentController', function ($scope) {
-    $scope.books = [
-        {message: "出售托福、GRE考试书籍", date: "09-23", id: ""},
-        {message: "雅思真题7-10转让", date: "09-23", id: ""},
-        {message: "托福词汇8成新", date: "09-21", id: ""},
-        {message: "GMAT复习资料整套，中珠", date: "09-21", id: ""},
-        {message: "雅思整套考试资料7成新", date: "09-19", id: ""},
-        {message: "司法考试全套复习题大学城", date: "09-23", id: ""},
-        {message: "大英二级班整套教材8成新", date: "09-23", id: ""},
-        {message: "中大行政管理自考书籍", date: "09-23", id: ""},
-        {message: "10本考研政治辅导用书", date: "09-21", id: ""},
-        {message: "高数数一教材，附考试福利", date: "09-19", id: ""}
-    ];
-});
+            // Books Information get
+            var books = new Array(data.books.length);
+            for (var i = 0; i < data.books.length; i++) {
+                var cvtdate = (data.books[i][2][1] < 9 ? ("0" + data.books[i][2][1]) : data.books[i][2][1]) + "-" + (data.books[i][2][2] < 9 ? ("0" + data.books[i][2][2]) : data.books[i][2][2]);
+                books[i] = {message: data.books[i][1], date: cvtdate, id: data.books[i][0]};
+            }
+            $scope.books = books;
 
-app.controller('trafficContentController', function ($scope) {
-    $scope.traffics = [
-        {message: "上海凤凰牌女装车7成新", date: "09-23", id: ""},
-        {message: "山地车 中珠交易", date: "09-23", id: ""},
-        {message: "可折叠小轮车", date: "09-21", id: ""},
-        {message: "大学城女装车蓝色，赠锁", date: "09-21", id: ""}
-    ];
-});
+            // Transportations Information get
+            var transp = new Array(data.transportations.length);
+            for (var i = 0; i < data.transportations.length; i++) {
+                var cvtdate = (data.transportations[i][2][1] < 9 ? ("0" + data.transportations[i][2][1]) : data.transportations[i][2][1]) + "-" + (data.transportations[i][2][2] < 9 ? ("0" + data.transportations[i][2][2]) : data.transportations[i][2][2]);
+                transp[i] = {message: data.transportations[i][1], date: cvtdate, id: data.transportations[i][0]};
+            }
+            $scope.traffics = transp;
 
-app.controller('dailyUseContentController', function ($scope) {
-    $scope.dailyUses = [
-        {message: "遮光床帘八成新", date: "09-23", id: ""},
-        {message: "史努比床帘大学城", date: "09-21", id: ""},
-        {message: "dior香水迷你版，用过一次", date: "09-21", id: ""}
-    ];
-});
+            // Groceies Information get
+            var groceries = new Array(data.groceries.length);
+            for (var i = 0; i < data.groceries.length; i++) {
+                var cvtdate = (data.groceries[i][2][1] < 9 ? ("0" + data.groceries[i][2][1]) : data.groceries[i][2][1]) + "-" + (data.groceries[i][2][2] < 9 ? ("0" + data.groceries[i][2][2]) : data.groceries[i][2][2]);
+                groceries[i] = {message: data.groceries[i][1], date: cvtdate, id: data.groceries[i][0]};
+            }
+            $scope.dailyUses = groceries;
 
-app.controller('electricalContentController', function ($scope) {
-    $scope.electricals = [
-        {message: "收音机8成新，比学校的好", date: "09-23", id: ""},
-        {message: "学校大众款收音机", date: "09-23", id: ""},
-        {message: "小天鹅洗衣机，无故障7成新", date: "09-21", id: ""},
-        {message: "", date: "", id: ""}
-    ];
-});
-
-app.controller('sportContentController', function ($scope) {
-    $scope.sports = [
-        {message: "网球拍蓝色", date: "09-23", id: ""},
-        {message: "羽毛球拍凯胜", date: "09-21", id: ""},
-        {message: "瑜伽垫", date: "09-21", id: ""},
-        {message: "", date: "", id: ""}
-    ];
-});
-
-app.controller('hotCtrl', function ($scope, $window) {
+            // Entertainments Information get
+            var entertainments = new Array(data.entertainments.length);
+            for (var i = 0; i < data.entertainments.length; i++) {
+                var cvtdate = (data.entertainments[i][2][1] < 9 ? ("0" + data.entertainments[i][2][1]) : data.entertainments[i][2][1]) + "-" + (data.entertainments[i][2][2] < 9 ? ("0" + data.entertainments[i][2][2]) : data.entertainments[i][2][2]);
+                entertainments[i] = {message: data.entertainments[i][1], date: cvtdate, id: data.entertainments[i][0]};
+            }
+            $scope.sport = entertainments;
+        }).error(function (data, status, headers, config) {
+            alert('error');
+        });
+    //$scope.abroad_hots = [
+    //    {message: "出售托福、GRE考试书籍", date: "09-23", id: "1"},
+    //    {message: "雅思真题7-10转让", date: "09-23", id: "2"},
+    //    {message: "托福词汇8成新", date: "09-21", id: "3"},
+    //    {message: "GMAT复习资料整套，中珠", date: "09-21", id: "4"},
+    //    {message: "雅思整套考试资料7成新", date: "09-19", id: "5"}
+    //];
+    // $scope.teaching_hots = [
+    //     {message: "司法考试全套复习题大学城", date: "09-23", id: ""},
+    //     {message: "大英二级班整套教材8成新", date: "09-23", id: ""},
+    //     {message: "中大行政管理自考书籍", date: "09-23", id: ""},
+    //     {message: "10本考研政治辅导用书", date: "09-21", id: ""},
+    //     {message: "高数数一教材，附考试福利", date: "09-19", id: ""}
+    // ];
+    // $scope.bike_hots =[
+    //     {message: "上海凤凰牌女装车7成新", date: "09-23", id: ""},
+    //     {message: "山地车 中珠交易", date: "09-23", id: ""},
+    //     {message: "可折叠小轮车", date: "09-21", id: ""},
+    //     {message: "大学城女装车蓝色，赠锁", date: "09-21", id: ""}
+    // ];
+    // $scope.ele_hots = [
+    //     {message: "上海凤凰牌女装车7成新", date: "09-23", id: ""},
+    //     {message: "山地车 中珠交易", date: "09-23", id: ""},
+    //     {message: "可折叠小轮车", date: "09-21", id: ""},
+    //     {message: "大学城女装车蓝色，赠锁", date: "09-21", id: ""}
+    // ];
+    // $scope.books = [
+    //     {message: "出售托福、GRE考试书籍", date: "09-23", id: ""},
+    //     {message: "雅思真题7-10转让", date: "09-23", id: ""},
+    //     {message: "托福词汇8成新", date: "09-21", id: ""},
+    //     {message: "GMAT复习资料整套，中珠", date: "09-21", id: ""},
+    //     {message: "雅思整套考试资料7成新", date: "09-19", id: ""},
+    //     {message: "司法考试全套复习题大学城", date: "09-23", id: ""},
+    //     {message: "大英二级班整套教材8成新", date: "09-23", id: ""},
+    //     {message: "中大行政管理自考书籍", date: "09-23", id: ""},
+    //     {message: "10本考研政治辅导用书", date: "09-21", id: ""},
+    //     {message: "高数数一教材，附考试福利", date: "09-19", id: ""}
+    // ];
+    //$scope.traffics = [
+    //    {message: "上海凤凰牌女装车7成新", date: "09-23", id: ""},
+    //    {message: "山地车 中珠交易", date: "09-23", id: ""},
+    //    {message: "可折叠小轮车", date: "09-21", id: ""},
+    //    {message: "大学城女装车蓝色，赠锁", date: "09-21", id: ""}
+    //];
+    //$scope.dailyUses = [
+    //    {message: "遮光床帘八成新", date: "09-23", id: ""},
+    //    {message: "史努比床帘大学城", date: "09-21", id: ""},
+    //    {message: "dior香水迷你版，用过一次", date: "09-21", id: ""}
+    //];
+    //$scope.electricals = [
+    //    {message: "收音机8成新，比学校的好", date: "09-23", id: ""},
+    //    {message: "学校大众款收音机", date: "09-23", id: ""},
+    //    {message: "小天鹅洗衣机，无故障7成新", date: "09-21", id: ""},
+    //    {message: "", date: "", id: ""}
+    //];
+    //$scope.sports = [
+    //    {message: "网球拍蓝色", date: "09-23", id: ""},
+    //    {message: "羽毛球拍凯胜", date: "09-21", id: ""},
+    //    {message: "瑜伽垫", date: "09-21", id: ""},
+    //    {message: "", date: "", id: ""}
+    //];
     $scope.goToGoods = function (id) {
         $window.location.href = "view/detail.html#?" + id;
     }
 });
+
 // End for main.html controller
 
 // Start for detail.html controller
@@ -209,7 +258,29 @@ app.controller('getGoodsDetailCtrl', function ($scope, $http, $location) {
             $scope.goods.name = data.item[3];
             $scope.goods.IsBargin = data.item[7] == 1 ? "可议价" : "不可议价";
             $scope.goods.price = data.item[6] + "元";
-            $scope.goods.locate = data.item[8];
+            //$scope.goods.locate = data.item[8];
+            switch(data.item[8]){
+                case 0:
+                    $scope.goods.locate="中珠";
+                    break;
+                case 1:
+                    $scope.goods.locate="南校";
+                    break;
+                case 2:
+                    $scope.goods.locate="大学城";
+                    break;
+                case 3:
+                    $scope.goods.locate="北校";
+                    break;
+                case 4:
+                    $scope.goods.locate="北师珠";
+                    break;
+                case 5:
+                    $scope.goods.locate="UIC";
+                    break;
+                default :
+                    $scope.goods.locate="无法获取";
+            }
             $scope.goods.method = data.item[12] == 1 ? "面对面交易" : (data.item[12] == 2 ? "快递" : "面对面、快递");
             $scope.goods.salePerson = data.item[2];
             $scope.goods.phone = data.user[2];
@@ -219,9 +290,10 @@ app.controller('getGoodsDetailCtrl', function ($scope, $http, $location) {
             $scope.goods.id = data.item[0];
             var picLen = 0;
             for (var i = 0; i < 5; i++) {
-                if (data.item[14 + i] != "") {
-                    picLen++;
+                if (data.item[14 + i] == "") {
+                    break;
                 }
+                picLen++;
             }
             var picArray = new Array(picLen);
             for (var i = 0; i < picLen; i++) {
@@ -255,10 +327,10 @@ app.controller('getGoodsDetailCtrl', function ($scope, $http, $location) {
         })
     };
     $scope.goods = {
-        name: "[全新]出售托福、GRE考试书籍",
+        name: "test",
         IsBargin: "不可议价",
-        price: "250元",
-        locate: "广州大学城、中大南校区",
+        price: "0元",
+        locate: "test",
         method: "面对面交易，可支持快递",
         salePerson: "猪小其",
         phone: "13631251234",
@@ -266,17 +338,17 @@ app.controller('getGoodsDetailCtrl', function ($scope, $http, $location) {
         date: "2015.9.23",
         description: "因为考完试了所以出售备考书籍托福听力特训，GRE-OG,TOFEL-OG,TOFEL全真题解，这基本是全新的，其他的有些是二手买回来的或者是有笔记在上面的，但是都有8成新以上。最好是广州大学城面交啦~联系我时，请说是在跳蚤市场上看到的，谢谢",
         picPaths: [
-            "../img/3.jpg",
-            "../img/1.jpg",
-            "../img/2.jpg"
+            //"../img/3.jpg",
+            //"../img/1.jpg",
+            //"../img/2.jpg"
         ],
-        id: "1"
+        id: "0"
     };
 });
 // End for detail.html controller
 
 // Start for list_*.html controller
-app.controller('listContentCtrl', function ($scope, $location) {
+app.controller('listContentCtrl', function ($scope, $location, $http) {
     $scope.curPage = 1;
     //Get from Server then
     $scope.allCount = 2001;
@@ -326,19 +398,34 @@ app.controller('listContentCtrl', function ($scope, $location) {
     //?#name=ccccc
     //$location.search().name;  ？后面要加上#作为url参数
     //$location.search()['name'];
+    var categoryId = 1;
     if (absUrl.indexOf("list_book") != -1) {
-        //alert("书籍分类");
+        categoryId = 1;
     } else if (absUrl.indexOf("list_daily") != -1) {
-        //alert("日用品分类");
+        categoryId = 3;
     } else if (absUrl.indexOf("list_elec") != -1) {
-        //alert("数码电器分类");
+        categoryId = 4;
     } else if (absUrl.indexOf("list_entertainment") != -1) {
-        //alert("文体娱乐分类");
+        categoryId = 5;
     } else if (absUrl.indexOf("list_traffic") != -1) {
-        //alert("交通工具分类");
+        categoryId = 2;
     } else {
         //alert("无法获取分类");
     }
+
+    $http.get('http://sysuflea.sinaapp.com/page/browsing', {
+        params: {
+            "categoryId": categoryId,
+            "page": $scope.curPage,
+            "numberItems": 10,
+            "sorting": 0
+        }
+    })
+        .success(function (data, status, headers, config) {
+            alert("success");
+        }).error(function (data, status, headers, config) {
+            alert("error");
+        });
 });
 // End for list_*.html controller
 

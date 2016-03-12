@@ -105,7 +105,7 @@ app.controller('infoTitleCtrl', function ($scope, $http, $rootScope) {
     $scope.modify = function () {
         $scope.btModify = !$scope.btModify;
     };
-    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
     $scope.confirmModify = function () {
         $scope.btModify = !$scope.btModify;
         var person_name = document.getElementById("displayNick");

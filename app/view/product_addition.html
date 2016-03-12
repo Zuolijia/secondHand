@@ -2,18 +2,18 @@
 <html ng-app="app">
 <head>
     <meta charset="UTF-8">
-    
+
     <script src="../js/angular/angular.min.js"></script>
     <script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
     <script src="../js/city.js"></script>
     <script src="../js/main.js"></script>
-    <script src="../js/add_prd.js"></script>
+
     <!--上传图片插件-->
     <script type="text/javascript" src="../js/zyUpload/jquery-1.7.2.js"></script>
     <script type="text/javascript" src="../js/zyUpload/core/zyFile.js"></script>
     <script type="text/javascript" src="../js/zyUpload/control/js/zyUpload.js"></script>
     <script type="text/javascript" src="../js/zyUpload/demo.js"></script>    <!--图片插件end-->
-        
+    <script src="../js/add_prd.js"></script>
     <!-- 引用控制层插件样式 -->
     <link href="../css/style.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="../js/zyUpload/control/css/zyUpload.css" type="text/css">
@@ -54,7 +54,7 @@
         <!--</div>-->
     </div>
 </div>
-<div class="whole">
+<div class="whole" ng-controller="FreshSessionCtrl">
 
     <!-- 商品信息添加 -->
     <div class="new_product_info">
@@ -129,8 +129,15 @@
                 
                 <div class="tableRow">
                     <p style="display:table-cell;">交易地点：
-                        <input type="text" style="width:300px; height:22px;" name="tradeVenue" id="tradeVenue"
-                               required="required"/>
+                        <select id="tradeVenue" name="tradeVenue">
+                            <option selected>请选择</option>
+                            <option value="0">中珠</option>
+                            <option value="1">南校</option>
+                            <option value="2">大学城</option>
+                            <option value="3">北校</option>
+                            <option value="4">北师珠</option>
+                            <option value="5">UIC</option>
+                        </select>
                     </p>
                 </div>
 

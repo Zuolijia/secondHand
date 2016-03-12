@@ -1,6 +1,6 @@
 // JavaScript Document
 /**
- *二级联动选择
+ * 二级联动选择
  **/
 var subcate = [
     ["留学资料", "考研复习", "公选公必", "专业教材", "工具书", "小说读物", "杂志期刊"],
@@ -48,26 +48,41 @@ function newprd_add() {
     var tradeVenue = $("#tradeVenue").val();
     var description = $("#description").val();
     var delivery = $("#delivery").val();
+    var picArray = new Array();
+    for(var i=0;;i++){
+        if(window.sessionStorage.getItem(i)){
+            picArray[i]=window.sessionStorage.getItem(i);
+            console.info(window.sessionStorage.getItem(i));
+        }
+        else{
+            break;
+        }
+    }
     //alert($("#fileImage").val());
 
     var para = {
-        'userId':window.localStorage.getItem("user_id"),
-        'title': title,
+        'userId': window.localStorage.getItem("user_id"),
+        'title': encodeURIComponent(title),
         'categoryId': categoryId,
         'subcategoryId': subcategoryId,
         'recency': recency,
         'arguable': arguable,
         'price': price,
         'tradeVenue': tradeVenue,
-        'description': description,
-        'delivery':delivery
+        'description': encodeURIComponent(description),
+        'delivery':delivery,
+        'picArray':picArray
     };
 
     $.post("http://sysuflea.sinaapp.com/item", para, function (data, status) {
+        window.sessionStorage.clear();
         console.info(data);
-        alert(data);
     });
 
 }
+
+app.controller('FreshSessionCtrl',function($scope){
+   window.sessionStorage.clear();
+});
 			
 		

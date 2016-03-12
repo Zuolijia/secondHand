@@ -27,275 +27,303 @@
             <a href="javascript:void(0)" ng-click="exit()">退出</a>
         </span>
     </div>
-    <div id="cityBox" ng-show="show || box" ng-mouseenter="box=true">
-        <select name="province" class="province" ng-init="province.id='0'" ng-model="province.id" ng-change="cBox.provinceChange(province.id);city.id='0';" ng-options="id as name for (id,name) in cBox.provinceArr"></select>
-        <select name="city" class="city" ng-init="city.id='0'" ng-model="city.id" ng-change="cBox.cityChange(city.id);box=false" ng-options="id as name for (id,name) in cBox.getCityArr"></select>
+    <div id="cityBox" ng-show="show || box ||pro" ng-mouseenter="box=true;pro=false" ng-mouseleave="box=false">
+        <select name="province" class="province" ng-init="province.id='0'" ng-model="province.id"
+                ng-change="cBox.provinceChange(province.id);city.id='0';pro=true"
+                ng-options="id as name for (id,name) in cBox.provinceArr"></select>
+        <select name="city" class="city" ng-init="city.id='0'" ng-model="city.id"
+                ng-change="cBox.cityChange(city.id);pro=false"
+                ng-options="id as name for (id,name) in cBox.getCityArr"></select>
         <!--<button class="btn btn-default" ng-click="box=false">确定</button>-->
     </div>
 </div>
 <div class="tableContainer" style="background-color:rgb(152,203,0);width:100%;max-height:10px;">
     <div class="tableRow">
-        <div id="logo"><a href="../main.html"><img src="icon/main_logo.png" width="200" height="80" alt="Flea Market"></a></div>
+        <div id="logo"><a href="../main.html"><img src="icon/main_logo.png" width="200" height="80"
+                                                   alt="Flea Market"></a></div>
         <div id="search">
             <input type="text" name="search_content" placeholder="输入关键字或类别搜索">
             <input id="search_button" type="button" value="搜索">
         </div>
         <div id="post">
-            <input id="post_button" type="button" value="我要发帖" onclick="window.open('view/product_addition.html')"></button>
+            <input id="post_button" type="button" value="我要发帖"
+                   onclick="window.open('view/product_addition.html')"></button>
         </div>
     </div>
 </div>
-<div class="whole">
-<div class="mainContent">
-    <div class="tableContainer">
-       
-        <div class="tableRow">
-            <div id="aside_bar">
-                <nav>
-                    <ul id="classify">
-                        <li id="all_classify">全部分类</li>
-                        <li class="classify_cell">
-                            <div>
-                                <span class="classify_title"><a href="view/list_book.html">书籍教材</a></span>
-                                <br>
+<div class="whole" ng-controller="GetMainInfCtr">
+    <div class="mainContent">
+        <div class="tableContainer">
+
+            <div class="tableRow">
+                <div id="aside_bar">
+                    <nav>
+                        <ul id="classify">
+                            <li id="all_classify">全部分类</li>
+                            <li class="classify_cell">
+                                <div>
+                                    <span class="classify_title"><a href="view/list_book.html">书籍教材</a></span>
+                                    <br>
                             <span class="classify_small_title">
                                 留学资料 考研复习 专业课教材
                             </span>
-                            </div>
-                        </li>
-                        <li class="classify_cell">
-                            <div>
-                                <span class="classify_title"><a href="view/list_elec.html">数码电器</a></span>
-                                <br>
+                                </div>
+                            </li>
+                            <li class="classify_cell">
+                                <div>
+                                    <span class="classify_title"><a href="view/list_elec.html">数码电器</a></span>
+                                    <br>
                             <span class="classify_small_title">
                                 收音机 洗衣机 手机 笔记本
                             </span>
-                            </div>
-                        </li>
-                        <li class="classify_cell">
-                            <div>
-                                <span class="classify_title"><a href="view/list_entertainment.html">文体娱乐</a></span>
-                                <br>
+                                </div>
+                            </li>
+                            <li class="classify_cell">
+                                <div>
+                                    <span class="classify_title"><a href="view/list_entertainment.html">文体娱乐</a></span>
+                                    <br>
                             <span class="classify_small_title">
                                 球拍 瑜伽垫 球
                             </span>
-                            </div>
-                        </li>
-                        <li class="classify_cell">
-                            <div>
-                                <span class="classify_title"><a href="view/list_traffic.html">交通工具</a></span>
-                                <br>
+                                </div>
+                            </li>
+                            <li class="classify_cell">
+                                <div>
+                                    <span class="classify_title"><a href="view/list_traffic.html">交通工具</a></span>
+                                    <br>
                             <span class="classify_small_title">
                                 自行车 电动车
                             </span>
-                            </div>
-                        </li>
-                        <li class="classify_cell">
-                            <div>
-                                <span class="classify_title"><a href="view/list_daily.html">日用品</a></span>
-                                <br>
+                                </div>
+                            </li>
+                            <li class="classify_cell">
+                                <div>
+                                    <span class="classify_title"><a href="view/list_daily.html">日用品</a></span>
+                                    <br>
                             <span class="classify_small_title">
                                  窗帘 床帘 衣服 鞋子 护肤品
                             </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="other_display">
+                    <section id="new_release" style="margin-left: 20px">
+                        <span class="section_title">最新发布</span><br>
+                    </section>
+
+                    <div class="box">
+                        <div class="picbox" style="padding-left:10px;">
+                            <ul class="piclist mainlist">
+                                <li>
+                                    <div><a href="http://www.xwcms.netm/" target="_blank">
+                                        <img src="icon/newgoods1.jpg" width="150" height="115"/></a><br>描述信息
+                                    </div>
+                                </li>
+                                <li>
+                                    <div><a href="http://www.xwcms.netm/" target="_blank">
+                                        <img src="icon/newgoods2.jpg" width="150" height="115"/></a> <br>描述信息
+                                    </div>
+                                </li>
+                                <li>
+                                    <div><a href="http://www.xwcms.netm/" target="_blank">
+                                        <img src="icon/newgoods3.jpg" width="150" height="115"/></a><br>描述信息
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div><a href="http://www.xwcms.netm/" target="_blank">
+                                        <img src="icon/newgoods4.jpg" width="150" height="115"/></a><br>描述信息
+                                    </div>
+                                </li>
+                                <li>
+                                    <div><a href="http://www.xwcms.netm/" target="_blank">
+                                        <img src="icon/newgoods5.jpg" width="150" height="115"/></a> <br>描述信息
+                                    </div>
+                                </li>
+                                <li>
+                                    <div><a href="http://www.xwcms.netm/" target="_blank">
+                                        <img src="icon/newgoods6.jpg" width="150" height="115"/></a><br>描述信息
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="piclist swaplist">
+                            </ul>
+                        </div>
+                        <div class="og_prev">
+                        </div>
+                        <div class="og_next">
+                        </div>
+                    </div>
+                    <!--<div class="tableContainerGoods">-->
+                    <!--<div class="tableRow">-->
+                    <!--<div class="newgoods">-->
+                    <!--<img src="icon/newgoods1.jpg" width="128" height="96" alt="new goods"><br>-->
+                    <!--&lt;!&ndash;{{ message }}&ndash;&gt;-->
+                    <!--<div class="new_name"> 收音机8成新，比学校的好</div>-->
+                    <!--</div>-->
+                    <!--<div class="newgoods">-->
+                    <!--<img src="icon/newgoods2.jpg" alt="new goods"><br>-->
+                    <!--&lt;!&ndash;{{message}}&ndash;&gt;-->
+                    <!--<div class="new_name"> 史努比床帘大学城</div>-->
+                    <!--</div>-->
+                    <!--<div class="newgoods">-->
+                    <!--<img src="icon/newgoods3.jpg" alt="new goods"><br>-->
+                    <!--&lt;!&ndash;{{message}}&ndash;&gt;-->
+                    <!--<div class="new_name">   上海凤凰牌女装车7成新</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="tableContainerHots">
+                        <div class="tableRow">
+                            <div class="tableCell">
+                                <section>
+                                    <span class="section_title">热卖·留学资料</span>
+                                </section>
+                                <ul class="content">
+                                    <li ng-repeat="item in abroad_hots">
+                                        <a class="itemContent" href="javascript:void(0)" ng-click="goToGoods(item.id)">
+                                            <div class="date">{{item.date}}</div>
+                                            <div class="message">{{item.message}}</div>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
+                            <div class="tableCell">
+                                <section>
+                                    <span class="section_title">热卖·教材书籍</span>
+                                </section>
+                                <ul class="content">
+                                    <li ng-repeat="item in teaching_hots">
+                                        <a class="itemContent" href="javascript:void(0)" ng-click="goToGoods(item.id)">
+                                            <div class="date">{{item.date}}</div>
+                                            <div class="message">{{item.message}}</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tableRow">
+                            <div class="tableCell">
+                                <section>
+                                    <span class="section_title">热卖·自行车</span>
+                                </section>
+                                <ul class="content">
+                                    <li ng-repeat="item in bike_hots">
+                                        <a class="itemContent" href="javascript:void(0)" ng-click="goToGoods(item.id)">
+                                            <div class="date">{{item.date}}</div>
+                                            <div class="message">{{item.message}}</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tableCell">
+                                <section>
+                                    <span class="section_title">热卖·必须电器</span>
+                                </section>
+                                <ul class="content">
+                                    <li ng-repeat="item in ele_hots">
+                                        <a class="itemContent" href="javascript:void(0)" ng-click="goToGoods(item.id)">
+                                            <div class="date">{{item.date}}</div>
+                                            <div class="message">{{item.message}}</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tableRow" style="column-span: 2">
+                <a class="linkToAllGoods" href="view/login.html">所有商品 >></a>
+            </div>
+        </div>
+        <div class="tableContainerFoot">
+            <div class="tableRow">
+                <div style="display: table-cell;border-right: 1px solid grey;width:260px">
+                    <section><a class="titleClassify" href="view/list_book.html">·书籍教材&nbsp;&nbsp;>></a>
+                    </section>
+                    <ul id="contentBook">
+                        <li ng-repeat="item in books">
+                            <a class="itemContentFoot" href="javascript:void(0)" ng-click="goToGoods(item.id)">
+                                <div class="date">{{item.date}}</div>
+                                <div class="message">{{item.message}}</div>
+                            </a>
                         </li>
                     </ul>
-                </nav>
-            </div>
-            <div class="other_display">
-                <section id="new_release" style="margin-left: 20px">
-                    <span class="section_title">最新发布</span><br>
-                </section>
-
-                <div class="box">
-                    <div class="picbox" style="padding-left:10px;">
-                        <ul class="piclist mainlist">
-                            <li><div><a href="http://www.xwcms.netm/" target="_blank">
-                                <img src="icon/newgoods1.jpg" width="150" height="115" /></a><br>描述信息</div></li>
-                            <li><div><a href="http://www.xwcms.netm/" target="_blank">
-                                <img src="icon/newgoods2.jpg"  width="150" height="115"/></a> <br>描述信息</div></li>
-                            <li><div><a href="http://www.xwcms.netm/" target="_blank">
-                                <img src="icon/newgoods3.jpg" width="150" height="115" /></a><br>描述信息</div> </li>
-
-                            <li><div><a href="http://www.xwcms.netm/" target="_blank">
-                                <img src="icon/newgoods4.jpg" width="150" height="115"/></a><br>描述信息</div> </li>
-                            <li><div><a href="http://www.xwcms.netm/" target="_blank">
-                                <img src="icon/newgoods5.jpg" width="150" height="115"/></a> <br>描述信息</div></li>
-                            <li><div><a href="http://www.xwcms.netm/" target="_blank">
-                                <img src="icon/newgoods6.jpg"   width="150" height="115"/></a><br>描述信息</div> </li>
-                        </ul>
-                        <ul class="piclist swaplist">
-                        </ul>
-                    </div>
-                    <div class="og_prev">
-                    </div>
-                    <div class="og_next">
+                </div>
+                <div style="display: table-cell;border-right: 1px solid grey; padding:5px;width:260px">
+                    <div style="display:table;">
+                        <div class="tableRow">
+                            <div class="tableCell">
+                                <section><a class="titleClassify" href="view/list_traffic.html">·交通工具&nbsp;&nbsp;>></a>
+                                </section>
+                                <ul id="contentTraffic">
+                                    <li ng-repeat="item in traffics">
+                                        <a class="itemContentFoot" href="javascript:void(0)"
+                                           ng-click="goToGoods(item.id)">
+                                            <div class="date">{{item.date}}</div>
+                                            <div class="message">{{item.message}}</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tableRow">
+                            <div class="tableCell">
+                                <section><a class="titleClassify" href="view/list_daily.html">·日用品&nbsp;&nbsp;>></a>
+                                </section>
+                                <ul id="contentDailyUse">
+                                    <li ng-repeat="item in dailyUses">
+                                        <a class="itemContentFoot" href="javascript:void(0)"
+                                           ng-click="goToGoods(item.id)">
+                                            <div class="date">{{item.date}}</div>
+                                            <div class="message">{{item.message}}</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!--<div class="tableContainerGoods">-->
-                    <!--<div class="tableRow">-->
-                        <!--<div class="newgoods">-->
-                            <!--<img src="icon/newgoods1.jpg" width="128" height="96" alt="new goods"><br>-->
-                            <!--&lt;!&ndash;{{ message }}&ndash;&gt;-->
-                         <!--<div class="new_name"> 收音机8成新，比学校的好</div>-->
-                        <!--</div>-->
-                        <!--<div class="newgoods">-->
-                            <!--<img src="icon/newgoods2.jpg" alt="new goods"><br>-->
-                            <!--&lt;!&ndash;{{message}}&ndash;&gt;-->
-                            <!--<div class="new_name"> 史努比床帘大学城</div>-->
-                        <!--</div>-->
-                        <!--<div class="newgoods">-->
-                            <!--<img src="icon/newgoods3.jpg" alt="new goods"><br>-->
-                            <!--&lt;!&ndash;{{message}}&ndash;&gt;-->
-                          <!--<div class="new_name">   上海凤凰牌女装车7成新</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <div class="tableContainerHots" ng-controller="hotCtrl">
-                    <div class="tableRow">
-                        <div class="tableCell">
-                            <section>
-                                <span class="section_title">热卖·留学资料</span>
-                            </section>
-                            <ul class="content" ng-controller="hotAbroadContentController">
-                                <li ng-repeat="item in hots">
-                                    <a class="itemContent" href="javascript:void(0)" ng-click="goToGoods(item.id)">
-                                        <div class="date">{{item.date}}</div>
-                                        <div class="message">{{item.message}}</div>
-                                    </a>
-                                </li>
-                            </ul>
+                <div style="display: table-cell; padding:5px;width:260px">
+                    <div style="display:table">
+                        <div class="tableRow">
+                            <div class="tableCell">
+                                <section><a class="titleClassify" href="view/list_elec.html">·数码电器&nbsp;&nbsp;>></a>
+                                </section>
+                                <ul id="contentElectrical">
+                                    <li ng-repeat="item in electricals">
+                                        <a class="itemContentFoot" href="javascript:void(0)"
+                                           ng-click="goToGoods(item.id)">
+                                            <div class="date">{{item.date}}</div>
+                                            <div class="message">{{item.message}}</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="tableCell">
-                            <section>
-                                <span class="section_title">热卖·教材书籍</span>
-                            </section>
-                            <ul class="content" ng-controller="hotTeachingContentController">
-                                <li ng-repeat="item in hots">
-                                    <a class="itemContent" href="javascript:void(0)" ng-click="goToGoods(item.id)">
-                                        <div class="date">{{item.date}}</div>
-                                        <div class="message">{{item.message}}</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">
-                            <section>
-                                <span class="section_title">热卖·自行车</span>
-                            </section>
-                            <ul class="content" ng-controller="hotBikeContentController">
-                                <li ng-repeat="item in hots">
-                                    <a class="itemContent" href="javascript:void(0)" ng-click="goToGoods(item.id)">
-                                        <div class="date">{{item.date}}</div>
-                                        <div class="message">{{item.message}}</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tableCell">
-                            <section>
-                                <span class="section_title">热卖·必须电器</span>
-                            </section>
-                            <ul class="content" ng-controller="hotElectricalContentController">
-                                <li ng-repeat="item in hots">
-                                    <a class="itemContent" href="javascript:void(0)" ng-click="goToGoods(item.id)">
-                                        <div class="date">{{item.date}}</div>
-                                        <div class="message">{{item.message}}</div>
-                                    </a>
-                                </li>
-                            </ul>
+                        <div class="tableRow">
+                            <div class="tableCell">
+                                <section><a class="titleClassify" href="view/list_entertainment.html">·文体娱乐&nbsp;&nbsp;>></a>
+                                </section>
+                                <ul id="contentSports">
+                                    <li ng-repeat="item in sports">
+                                        <a class="itemContentFoot" href="javascript:void(0)"
+                                           ng-click="goToGoods(item.id)">
+                                            <div class="date">{{item.date}}</div>
+                                            <div class="message">{{item.message}}</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="tableRow" style="column-span: 2">
-            <a class="linkToAllGoods" href="view/login.html">所有商品 >></a>
-        </div>
-    </div>
-    <div class="tableContainerFoot">
-        <div class="tableRow">
-            <div style="display: table-cell;border-right: 1px solid grey;width:260px">
-                <section><a class="titleClassify" href="view/list_book.html">·书籍教材&nbsp;&nbsp;>></a>
-                </section>
-                <ul id="contentBook" ng-controller="bookContentController">
-                    <li ng-repeat="item in books">
-                        <a class="itemContentFoot" href="javascript:void(0)" ng-click="goToGoods(item.id)">
-                            <div class="date">{{item.date}}</div>
-                            <div class="message">{{item.message}}</div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div style="display: table-cell;border-right: 1px solid grey; padding:5px;width:260px">
-                <div style="display:table;">
-                    <div class="tableRow">
-                        <div class="tableCell">
-                            <section><a class="titleClassify" href="view/list_traffic.html">·交通工具&nbsp;&nbsp;>></a>
-                            </section>
-                            <ul id="contentTraffic" ng-controller="trafficContentController">
-                                <li ng-repeat="item in traffics">
-                                    <a class="itemContentFoot" href="javascript:void(0)" ng-click="goToGoods(item.id)">
-                                        <div class="date">{{item.date}}</div>
-                                        <div class="message">{{item.message}}</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">
-                            <section><a class="titleClassify" href="view/list_daily.html">·日用品&nbsp;&nbsp;>></a>
-                            </section>
-                            <ul id="contentDailyUse" ng-controller="dailyUseContentController">
-                                <li ng-repeat="item in dailyUses">
-                                    <a class="itemContentFoot" href="javascript:void(0)" ng-click="goToGoods(item.id)">
-                                        <div class="date">{{item.date}}</div>
-                                        <div class="message">{{item.message}}</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div style="display: table-cell; padding:5px;width:260px">
-                <div style="display:table">
-                    <div class="tableRow">
-                        <div class="tableCell">
-                            <section><a class="titleClassify" href="view/list_elec.html">·数码电器&nbsp;&nbsp;>></a>
-                            </section>
-                            <ul id="contentElectrical" ng-controller="electricalContentController">
-                                <li ng-repeat="item in electricals">
-                                    <a class="itemContentFoot" href="javascript:void(0)" ng-click="goToGoods(item.id)">
-                                        <div class="date">{{item.date}}</div>
-                                        <div class="message">{{item.message}}</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">
-                            <section><a class="titleClassify" href="view/list_entertainment.html">·文体娱乐&nbsp;&nbsp;>></a>
-                            </section>
-                            <ul id="contentSports" ng-controller="sportContentController">
-                                <li ng-repeat="item in sports">
-                                    <a class="itemContentFoot" href="javascript:void(0)" ng-click="goToGoods(item.id)">
-                                        <div class="date">{{item.date}}</div>
-                                        <div class="message">{{item.message}}</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 </div>
 </body>

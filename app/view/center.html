@@ -81,9 +81,9 @@
                             <input type="text" ng-model="realname" style="width: 50px;" ng-hide="btModify"></div>
                     </div>
                     <div class="tableRow">
-                        <div id="phone">电话：<span>{{phone}}</span>
-                            <!--<input type="number" value="{{phone}}" ng-model="phone" style="width:100px;"-->
-                                   <!--ng-hide="btModify">-->
+                        <div id="phone">电话：<span ng-show="btModify">{{phone}}</span>
+                            <input type="text" value="{{phone}}" ng-model="phone" style="width:100px;"
+                                   ng-hide="btModify">
                         </div>
                         <div id="qq">QQ：<span ng-show="btModify">{{qq}}</span>
                             <input type="text" ng-model="qq" pattern="^\d{6,10}$" style="width:100px;" ng-hide="btModify">
